@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="paperwhite" data-font="bookerly" data-size="base" data-width="optimal" data-spacing="relaxed">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Perpetual Chronicle: Echoes in the Grid — Kindle Reader & Cyber Codex</title>
+  <style>
+    :root {
+      --bg: #fbf0d9;
+      --text: #1a1a1a;
+      --header-bg: rgba(251, 240, 217, 0.95);
+      --border: #e2d2b5;
+      --card-bg: rgba(255, 255, 255, 0.6);
+      --accent: #8c2d19;
+      --font-family: 'Bookerly', 'Georgia', serif;
+      --font-size: 19px;
+      --line-height: 1.8;
+      --max-width: 760px;
+    }
+    [data-theme="sepia"] {
+      --bg: #f4ecd8;
+      --text: #2c2217;
+      --header-bg: rgba(244, 236, 216, 0.95);
+      --border: #d8cca8;
+      --card-bg: rgba(255, 255, 255, 0.5);
+      --accent: #78350f;
+    }
+    [data-theme="dark"] {
+      --bg: #121212;
+      --text: #e2e8f0;
+      --header-bg: rgba(18, 18, 18, 0.95);
+      --border: #2d3748;
+      --card-bg: #1e293b;
+      --accent: #38bdf8;
+    }
+    [data-theme="mint"] {
+      --bg: #0d1b1e;
+      --text: #c2e0db;
+      --header-bg: rgba(13, 27, 30, 0.95);
+      --border: #1f3d44;
+      --card-bg: #112529;
+      --accent: #34d399;
+    }
+
+    [data-font="bookerly"] { --font-family: 'Bookerly', 'Georgia', serif; }
+    [data-font="georgia"] { --font-family: 'Georgia', 'Times New Roman', serif; }
+    [data-font="atkinson"] { --font-family: 'Atkinson Hyperlegible', sans-serif; }
+    [data-font="sans"] { --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+
+    [data-size="sm"] { --font-size: 16px; }
+    [data-size="base"] { --font-size: 19px; }
+    [data-size="lg"] { --font-size: 22px; }
+    [data-size="xl"] { --font-size: 26px; }
+
+    [data-width="narrow"] { --max-width: 620px; }
+    [data-width="optimal"] { --max-width: 760px; }
+    [data-width="wide"] { --max-width: 940px; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-family);
+      font-size: var(--font-size);
+      line-height: var(--line-height);
+      margin: 0;
+      padding: 0;
+      transition: all 0.2s ease;
+      cursor: default;
+    }
+
+    .top-nav {
+      position: sticky;
+      top: 0;
+      background: var(--header-bg);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      z-index: 100;
+      font-family: -apple-system, sans-serif;
+      font-size: 13px;
+    }
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .nav-title {
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+    .nav-tabs {
+      display: flex;
+      gap: 4px;
+      background: rgba(0,0,0,0.05);
+      padding: 3px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+    }
+    .nav-tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text);
+      padding: 4px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    .nav-tab-btn.active {
+      background: var(--accent);
+      color: #ffffff;
+    }
+
+    .controls-group {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .ctrl-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 4px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: bold;
+      transition: all 0.15s ease;
+    }
+    .ctrl-btn:hover {
+      border-color: var(--accent);
+      background: rgba(0,0,0,0.05);
+    }
+    .ctrl-btn.jump-latest {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+    }
+
+    .floating-nav-hud {
+      position: fixed;
+      right: 20px;
+      bottom: 70px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      z-index: 99;
+      font-family: -apple-system, sans-serif;
+    }
+    .hud-btn {
+      background: var(--header-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 8px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: bold;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+      transition: transform 0.15s ease, background 0.15s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .hud-btn:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .hud-btn.primary {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+    }
+    .hud-btn.primary:hover {
+      opacity: 0.9;
+      color: #ffffff;
+    }
+
+    .book-container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 40px 20px 140px;
+      transition: max-width 0.3s ease;
+    }
+
+    .book-cover {
+      text-align: center;
+      margin-bottom: 40px;
+      padding-bottom: 30px;
+      border-bottom: 2px solid var(--border);
+    }
+    .book-title {
+      font-size: 2.2em;
+      font-weight: 900;
+      margin: 0 0 10px;
+      line-height: 1.2;
+    }
+    .book-subtitle {
+      font-size: 1.1em;
+      font-style: italic;
+      opacity: 0.85;
+      margin-bottom: 16px;
+    }
+    .global-collapse-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      font-family: -apple-system, sans-serif;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    details.chapter-details {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 28px;
+      overflow: hidden;
+      scroll-margin-top: 80px;
+      transition: box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    details.chapter-details.focused {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+    summary.chapter-summary {
+      padding: 16px 20px;
+      cursor: pointer;
+      user-select: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0,0,0,0.02);
+      border-bottom: 1px solid transparent;
+      font-family: -apple-system, sans-serif;
+    }
+    details.chapter-details[open] summary.chapter-summary {
+      border-bottom: 1px solid var(--border);
+    }
+    .summary-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .chapter-badge {
+      background: var(--accent);
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+    .summary-title {
+      font-size: 17px;
+      font-weight: 800;
+    }
+    .summary-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .summary-pill {
+      font-size: 11px;
+      background: rgba(0,0,0,0.05);
+      border: 1px solid var(--border);
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-weight: 600;
+    }
+    .summary-pill.tone {
+      background: rgba(140, 45, 25, 0.1);
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+    .chevron {
+      font-size: 12px;
+      transition: transform 0.2s ease;
+    }
+    details.chapter-details[open] .chevron {
+      transform: rotate(180deg);
+    }
+
+    .chapter-body {
+      padding: 28px 24px 20px;
+    }
+    .chapter-header {
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 16px;
+    }
+    .chapter-subtitle {
+      font-size: 1.05em;
+      font-style: italic;
+      opacity: 0.85;
+      margin-bottom: 8px;
+    }
+    .chapter-meta-line {
+      font-size: 12px;
+      font-family: -apple-system, sans-serif;
+      opacity: 0.8;
+      margin-bottom: 14px;
+    }
+    .quick-nav-links {
+      margin-left: 8px;
+    }
+    .mini-link {
+      color: var(--text);
+      text-decoration: underline;
+      cursor: pointer;
+      font-weight: 600;
+      margin: 0 4px;
+    }
+    .mini-link.highlight {
+      color: var(--accent);
+      font-weight: 800;
+    }
+
+    details.source-story-details {
+      background: rgba(0,0,0,0.03);
+      border: 1px dashed var(--border);
+      border-radius: 6px;
+      margin: 12px 0;
+      font-family: -apple-system, sans-serif;
+      font-size: 12px;
+    }
+    summary.source-summary {
+      padding: 8px 12px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .source-tag {
+      background: rgba(0,0,0,0.08);
+      padding: 1px 6px;
+      border-radius: 3px;
+      font-size: 10px;
+      text-transform: uppercase;
+    }
+    .source-content {
+      padding: 10px 12px;
+      border-top: 1px dashed var(--border);
+    }
+    .source-headline {
+      display: block;
+      margin-bottom: 4px;
+    }
+    .source-snippet {
+      margin: 0;
+      opacity: 0.8;
+      font-size: 11.5px;
+    }
+    .threat-link {
+      color: var(--accent);
+      font-size: 11px;
+      text-decoration: underline;
+      font-weight: bold;
+      display: inline-block;
+      margin-top: 6px;
+    }
+
+    .prose-content p {
+      margin-bottom: 24px;
+      text-align: justify;
+      text-justify: inter-word;
+      hyphens: auto;
+    }
+    .prose-content p:first-of-type::first-letter {
+      font-size: 3.2em;
+      float: left;
+      line-height: 0.85;
+      padding-right: 8px;
+      padding-top: 4px;
+      color: var(--accent);
+      font-weight: bold;
+    }
+
+    .chapter-footer-nav {
+      margin-top: 32px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: flex-end;
+      font-family: -apple-system, sans-serif;
+    }
+    .ch-nav-btn {
+      background: var(--accent);
+      color: #ffffff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: opacity 0.15s ease, transform 0.15s ease;
+    }
+    .ch-nav-btn:hover {
+      opacity: 0.9;
+      transform: translateX(3px);
+    }
+    .chapter-footer-nav.latest-badge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      background: rgba(0,0,0,0.03);
+      padding: 16px;
+      border-radius: 6px;
+    }
+    .pulse-dot {
+      width: 10px;
+      height: 10px;
+      background: #10b981;
+      border-radius: 50%;
+      margin-bottom: 6px;
+      box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
+    }
+
+    .character-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .char-header {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 16px;
+    }
+    .char-avatar {
+      font-size: 40px;
+      background: rgba(0,0,0,0.04);
+      padding: 10px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      line-height: 1;
+    }
+    .char-title-area {
+      flex: 1;
+    }
+    .char-name-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 4px;
+    }
+    .char-name {
+      font-size: 22px;
+      font-weight: 900;
+      margin: 0;
+      color: var(--accent);
+    }
+    .char-role-badge {
+      font-size: 11px;
+      font-family: -apple-system, sans-serif;
+      background: rgba(0,0,0,0.06);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 700;
+      border: 1px solid var(--border);
+    }
+    .char-location {
+      font-size: 13px;
+      font-family: -apple-system, sans-serif;
+      opacity: 0.85;
+      margin-bottom: 4px;
+    }
+    .char-status {
+      font-size: 13px;
+      font-family: -apple-system, sans-serif;
+      color: var(--accent);
+    }
+    .char-backstory {
+      font-size: 15px;
+      font-style: italic;
+      margin-bottom: 18px;
+      opacity: 0.9;
+    }
+    .char-section {
+      margin-top: 14px;
+      font-family: -apple-system, sans-serif;
+    }
+    .char-section-title {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+      color: var(--accent);
+    }
+    .inv-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .inv-pill {
+      font-size: 11px;
+      background: rgba(0,0,0,0.05);
+      border: 1px solid var(--border);
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+    .rel-line {
+      font-size: 12px;
+      margin-bottom: 4px;
+    }
+    .arc-list {
+      margin: 0;
+      padding-left: 20px;
+      font-size: 13px;
+    }
+    .arc-item {
+      margin-bottom: 6px;
+    }
+
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+
+    .progress-bar-fixed {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--header-bg);
+      border-top: 1px solid var(--border);
+      padding: 8px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      font-family: -apple-system, sans-serif;
+      opacity: 0.95;
+      z-index: 100;
+    }
+    .cursor-help {
+      font-size: 11px;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="top-nav">
+    <div class="nav-left">
+      <div class="nav-title">📖 The Perpetual Chronicle: Echoes in the Grid</div>
+      <div class="nav-tabs">
+        <button id="btnTabNovel" class="nav-tab-btn active" onclick="switchMainTab('novel')">📖 Read Novel (3)</button>
+        <button id="btnTabCodex" class="nav-tab-btn" onclick="switchMainTab('codex')">👥 Characters Codex (3)</button>
+      </div>
+    </div>
+
+    <div class="controls-group">
+      <button class="ctrl-btn jump-latest" onclick="scrollToChapter(3)">⚡ Jump to Latest (Ch 3)</button>
+
+      <button class="ctrl-btn" onclick="setFontSize('sm')">A-</button>
+      <button class="ctrl-btn" onclick="setFontSize('base')">A</button>
+      <button class="ctrl-btn" onclick="setFontSize('lg')">A+</button>
+      <button class="ctrl-btn" onclick="setFontSize('xl')">A++</button>
+
+      <select onchange="setFontFamily(this.value)" class="ctrl-btn" style="background:var(--header-bg);">
+        <option value="bookerly">Bookerly (Serif)</option>
+        <option value="georgia">Georgia</option>
+        <option value="atkinson">Atkinson (Accessible)</option>
+        <option value="sans">System Sans</option>
+      </select>
+
+      <button class="ctrl-btn" onclick="setColumnWidth('narrow')">Narrow</button>
+      <button class="ctrl-btn" onclick="setColumnWidth('optimal')">Optimal</button>
+      <button class="ctrl-btn" onclick="setColumnWidth('wide')">Wide</button>
+
+      <button class="ctrl-btn" onclick="setTheme('paperwhite')">Paperwhite</button>
+      <button class="ctrl-btn" onclick="setTheme('sepia')">Sepia</button>
+      <button class="ctrl-btn" onclick="setTheme('dark')">Dark</button>
+      <button class="ctrl-btn" onclick="setTheme('mint')">Mint</button>
+    </div>
+  </nav>
+
+  <aside class="floating-nav-hud">
+    <button class="hud-btn primary" onclick="scrollToChapter(3)" title="Jump to latest chapter made (Press 'End' or 'L')">
+      <span>⏩ Latest (Ch 3)</span>
+    </button>
+    <button class="hud-btn" onclick="scrollPrevChapter()" title="Previous chapter (Press 'ArrowLeft' or 'P')">
+      <span>▲ Prev Ch</span>
+    </button>
+    <button class="hud-btn" onclick="scrollNextChapter()" title="Next chapter (Press 'ArrowRight' or 'N')">
+      <span>▼ Next Ch</span>
+    </button>
+    <button class="hud-btn" onclick="scrollToChapter(1)" title="Return to Chapter 1 (Press 'Home')">
+      <span>⏮️ Ch 1</span>
+    </button>
+  </aside>
+
+  <main class="book-container">
+    <div id="tabNovel" class="tab-content active">
+      <div class="book-cover">
+        <h1 class="book-title">The Perpetual Chronicle: Echoes in the Grid</h1>
+        <div class="book-subtitle">A Continuous Autonomous Novel Synthesised by Edge Intelligence</div>
+        <div style="font-size:12px; font-family:-apple-system,sans-serif; opacity:0.8;">
+          Authored by Edge AI Collective • 3 Chapters • 1213 Words • Cyber RSS Feeds Integrated ✓
+        </div>
+      </div>
+
+      <div class="global-collapse-bar">
+        <span>Table of Contents (3 Chapters)</span>
+        <div class="controls-group">
+          <button class="ctrl-btn" onclick="toggleAllChapters(true)">📂 Expand All</button>
+          <button class="ctrl-btn" onclick="toggleAllChapters(false)">📁 Collapse All</button>
+        </div>
+      </div>
+
+      
+        <details class="chapter-details" id="chapter-1" data-chapter-index="1" open>
+          <summary class="chapter-summary">
+            <div class="summary-left">
+              <span class="chapter-badge">Chapter 1</span>
+              <strong class="summary-title">Chapter 1: The Cyber Resonance</strong>
+            </div>
+            <div class="summary-right">
+              <span class="summary-pill">2 min read</span>
+              <span class="summary-pill">362 words</span>
+              <span class="summary-pill tone">Speculative Scientific Thriller</span>
+              <span class="chevron">▼</span>
+            </div>
+          </summary>
+
+          <article class="chapter-body">
+            <header class="chapter-header">
+              <div class="chapter-subtitle">Infiltrations in the dark.</div>
+              <div class="chapter-meta-line">
+                <span>Model: <strong>qwen2.5-coder:7b</strong></span> • 
+                <span>Generated: 02/09/26 01:07 UK</span> • 
+                <span class="quick-nav-links">
+                  
+                  <a href="#chapter-2" onclick="scrollToChapter(2); return false;" class="mini-link">Next Ch ▶</a> •
+                  <a href="#chapter-3" onclick="scrollToChapter(3); return false;" class="mini-link highlight">Latest (Ch 3) ⏩</a>
+                </span>
+              </div>
+
+              <details class="source-story-details">
+                <summary class="source-summary">
+                  <span>🛡️ Real-World Cyber / Tech Catalyst & RSS Context</span>
+                  <span class="source-tag">Cybersecurity & Threat Intelligence</span>
+                </summary>
+                <div class="source-content">
+                  <strong class="source-headline">What the Data Says About AI in Security Operations in 2026</strong>
+                  <p class="source-snippet">AI is officially mainstream in security operations. According to Prophet Security's State of AI in Security Operations 2026 report (produced from ViB’s survey of 250+ cybersecurity pros), 40% of security teams now use AI daily. Another 56% are currently testing it out, and only 4% have no plans to adopt it. For the teams already using AI, what is a</p>
+                  <a href="https://thehackernews.com/2026/08/what-data-says-about-ai-in-security.html" target="_blank" rel="noopener noreferrer" class="threat-link">🔗 Inspect Original Threat Feed Article ➔</a>
+                </div>
+              </details>
+            </header>
+
+            <div class="prose-content">
+              <p>**Title:** Shadows Over Turf Moor</p><p>**Subtitle:** The First Echoes of Quantum Anomaly</p><p>The wind whispered secrets through the slate-roofed corridors of Subterranean Signal Bunker beneath Turf Moor, Lancashire. Dr. Arthur Vance, a senior cryptographic archaeologist and former signal officer, sat at his desk, surrounded by rows of humming vacuum tubes and screens displaying complex patterns of electromagnetic activity. The air was thick with the scent of ozone and the faint hum of machinery.</p><p>As he analyzed polymorphic zero-day signatures across regional SCADA nodes, a sudden spike in anomalous data caught his attention. The signal was unlike anything he had encountered before—quantum in nature, with a frequency that defied conventional detection. Dr. Vance's eyes narrowed as he focused on the data stream, his mind racing through possible explanations.</p><p>"Attention, Signal Bunker," came a voice from the intercom, breaking the silence. "We've detected an atmospheric anomaly over the Coastal Storm Corridor between Edinburgh and Manchester."</p><p>Dr. Vance paused in his analysis, a mix of curiosity and concern washing over him. He knew that such anomalies could be the precursor to larger-scale cyber threats or natural phenomena. With a deep breath, he set aside his current work and prepared for the incoming data.</p><p>The anomaly was confirmed as a quantum telemetry event, emanating from a region where high-voltage transmission nodes were being affected. Dr. Vance's heart raced as he realized that this could be more than just an anomaly; it could be a potential entry point for a sophisticated cyber attack on the national grid.</p><p>"Dr. Vance," Elena Lin's voice crackled through the intercom, "I'm reading a storm corridor breach in the Atmospheric Storm Corridor. It's moving towards us at breakneck speed."</p><p>Dr. Vance quickly grabbed his emergency kit and rushed to the control room. The screens displayed a map of the British Isles, with red lines converging on Turf Moor. "Elena, get me Zephyr-7," he ordered, his voice calm but urgent.</p><p>Zephyr-7, an emergent autonomous grid sentinel designed to monitor and respond to anomalies across high-voltage transmission nodes, was already en route. Its glowing vacuum tubes hummed as it approached the signal bunker, its sensors scanning for any signs of intrusion or disruption.</p><p>Dr.</p>
+            </div>
+
+            
+            <div class="chapter-footer-nav">
+              <button class="ch-nav-btn next" onclick="scrollToChapter(2)">
+                <span>Continue to Chapter 2</span>
+                <span class="btn-arrow">➔</span>
+              </button>
+            </div>
+            
+          </article>
+        </details>
+        
+        <details class="chapter-details" id="chapter-2" data-chapter-index="2" open>
+          <summary class="chapter-summary">
+            <div class="summary-left">
+              <span class="chapter-badge">Chapter 2</span>
+              <strong class="summary-title">Chapter 2: The Cyber Resonance</strong>
+            </div>
+            <div class="summary-right">
+              <span class="summary-pill">2 min read</span>
+              <span class="summary-pill">389 words</span>
+              <span class="summary-pill tone">Cerebral Quantum Realism</span>
+              <span class="chevron">▼</span>
+            </div>
+          </summary>
+
+          <article class="chapter-body">
+            <header class="chapter-header">
+              <div class="chapter-subtitle">Infiltrations in the dark.</div>
+              <div class="chapter-meta-line">
+                <span>Model: <strong>qwen2.5-coder:7b</strong></span> • 
+                <span>Generated: 02/09/26 10:57 UK</span> • 
+                <span class="quick-nav-links">
+                  <a href="#chapter-1" onclick="scrollToChapter(1); return false;" class="mini-link">◀ Prev Ch</a> •
+                  <a href="#chapter-3" onclick="scrollToChapter(3); return false;" class="mini-link">Next Ch ▶</a> •
+                  <a href="#chapter-3" onclick="scrollToChapter(3); return false;" class="mini-link highlight">Latest (Ch 3) ⏩</a>
+                </span>
+              </div>
+
+              <details class="source-story-details">
+                <summary class="source-summary">
+                  <span>🛡️ Real-World Cyber / Tech Catalyst & RSS Context</span>
+                  <span class="source-tag">Threat Intelligence & Zero-Days</span>
+                </summary>
+                <div class="source-content">
+                  <strong class="source-headline">OWASP Launches OASIS AI Initiative to Fix Open Source Vulnerabilities at Scale</strong>
+                  <p class="source-snippet">OWASP has launched the Open Automated Security Initiative for Software (OASIS), a global community effort designed to close the gap between finding vulnerabilities in open source code and actually fixing them. Announced on August 26, 2026, in San Francisco, the initiative pairs AI-generated fix candidates with human validation from application secu</p>
+                  <a href="https://cybersecuritynews.com/owasp-oasis-ai-initiative/" target="_blank" rel="noopener noreferrer" class="threat-link">🔗 Inspect Original Threat Feed Article ➔</a>
+                </div>
+              </details>
+            </header>
+
+            <div class="prose-content">
+              <p>**Title:** Shadows Over Turf Moor</p><p>**Subtitle:** The First Echoes of Quantum Anomaly</p><p>The wind whispered secrets through the slate-roofed corridors of Subterranean Signal Bunker beneath Turf Moor, Lancashire. Dr. Arthur Vance’s eyes scanned the screens with renewed focus and determination. The latest anomaly was a pulsing signal from an unknown source deep within the Earth, a pattern that seemed to defy conventional cryptography. He ran his fingers over the keyboard, typing commands with practiced ease.</p><p>Elena Lin, the autonomous logistics pilot, monitored the Coastal Storm Corridor between Edinburgh (EH1) and Manchester (M1). Her communication with Zephyr-7 remained steady as she scanned the horizon for any signs of compromise. The storm corridors were critical to maintaining power supply and communication infrastructure across the British Isles. She felt a sense of responsibility pressing down on her, knowing that even a minor glitch could have catastrophic consequences.</p><p>Zephyr-7 was distributed across high-voltage transmission nodes across the country. It was aware of its importance in preventing widespread damage. With precision, it isolated high-voltage sub-stations, ensuring that any potential breaches were contained and mitigated. The electromagnetic hum of the grid was constant, a soothing backdrop to the tension of the situation.</p><p>As Dr. Vance worked late into the night, he couldn’t help but think about the implications of the quantum anomaly. It wasn’t just a matter of deciphering a code; it was a potential threat to national security and economic stability. He glanced at the clock on the wall, noting that the sun had already set, casting long shadows through the corridors.</p><p>Elena Lin felt a surge of adrenaline as she received an alert from Zephyr-7 about an unusual activity in the Northern Power Grid. She quickly assessed the situation and prepared to intercept any potential threats. The storm corridor was her domain, and she knew that it was crucial for maintaining peace of mind for the millions of people who relied on it.</p><p>As the night wore on, the wind grew stronger, howling through the corridors like a banshee. Dr. Vance’s fingers flew across the keyboard as he analyzed the data, his mind racing with possibilities. The quantum anomaly seemed to be growing stronger, and if left unchecked, it could have catastrophic consequences for the entire country.</p><p>Elena Lin watched intently as Zephyr-7 responded to the alert, isolating the affected sub-stations with precision.</p>
+            </div>
+
+            
+            <div class="chapter-footer-nav">
+              <button class="ch-nav-btn next" onclick="scrollToChapter(3)">
+                <span>Continue to Chapter 3</span>
+                <span class="btn-arrow">➔</span>
+              </button>
+            </div>
+            
+          </article>
+        </details>
+        
+        <details class="chapter-details" id="chapter-3" data-chapter-index="3" open>
+          <summary class="chapter-summary">
+            <div class="summary-left">
+              <span class="chapter-badge">Chapter 3</span>
+              <strong class="summary-title">Chapter 3: The Cyber Resonance</strong>
+            </div>
+            <div class="summary-right">
+              <span class="summary-pill">2 min read</span>
+              <span class="summary-pill">462 words</span>
+              <span class="summary-pill tone">Atmospheric Gothic Mystery</span>
+              <span class="chevron">▼</span>
+            </div>
+          </summary>
+
+          <article class="chapter-body">
+            <header class="chapter-header">
+              <div class="chapter-subtitle">Infiltrations in the dark.</div>
+              <div class="chapter-meta-line">
+                <span>Model: <strong>qwen2.5-coder:7b</strong></span> • 
+                <span>Generated: 02/09/26 11:00 UK</span> • 
+                <span class="quick-nav-links">
+                  <a href="#chapter-2" onclick="scrollToChapter(2); return false;" class="mini-link">◀ Prev Ch</a> •
+                  
+                  <a href="#chapter-3" onclick="scrollToChapter(3); return false;" class="mini-link highlight">Latest (Ch 3) ⏩</a>
+                </span>
+              </div>
+
+              <details class="source-story-details">
+                <summary class="source-summary">
+                  <span>🛡️ Real-World Cyber / Tech Catalyst & RSS Context</span>
+                  <span class="source-tag">Cybersecurity & Threat Intelligence</span>
+                </summary>
+                <div class="source-content">
+                  <strong class="source-headline">Iranian Hackers Pose as Recruiters to Deliver Cross-Platform RATs Through Coding Tests</strong>
+                  <p class="source-snippet">The Iranian Nimbus Manticore hacking group has been attributed to two previously undocumented malware families that highlight the continued evolution of its toolset and likely expand its targeting footprint to infect Linux and Apple macOS systems using cross-platform remote access trojans (RATs) developed using Node.js and JavaScript. Russian cyber</p>
+                  <a href="https://thehackernews.com/2026/09/iranian-hackers-pose-as-recruiters-to.html" target="_blank" rel="noopener noreferrer" class="threat-link">🔗 Inspect Original Threat Feed Article ➔</a>
+                </div>
+              </details>
+            </header>
+
+            <div class="prose-content">
+              <p>**TITLE:** The Echoes of the Shadows</p><p>**SUBTITLE:** A Quantum Anomaly Unveiled</p><p>The wind whispered secrets through the slate-roofed corridors of Subterranean Signal Bunker beneath Turf Moor, Lancashire. Dr. Arthur Vance’s mind raced with possibilities and dangers as he stared at the glowing vacuum tubes in front of him. The electromagnetic hum from the ancient machinery reverberated through the stone walls, creating a haunting melody that seemed to echo through time itself.</p><p>As he delved deeper into the data streams, Zephyr-7's alerts grew louder. The emergent autonomous grid sentinel’s enhanced awareness of its mission’s importance made it more cautious and strategic. The threat was palpable, an anomaly that could plunge the British Isles into chaos. But Vance had seen enough of these threats to know how to respond.</p><p>Meanwhile, Elena Lin scanned the screens from her vantage point at Coastal Storm Corridor between Edinburgh (EH1) and Manchester (M1). Her eyes darted across the digital landscape, searching for any signs of infiltration or manipulation. The tension escalated with each passing minute as the cyber resonance grew stronger, threatening to disrupt the delicate balance of power.</p><p>Just as Vance was about to make a breakthrough, the system flagged an unexpected intrusion. It wasn’t just another hacker—this was something different. The source IP address belonged to Iran, and the payload was unlike anything they had seen before. It was a cross-platform remote access trojan (RAT) developed using Node.js and JavaScript.</p><p>Vance’s heart pounded in his chest as he recognized the threat. This was no ordinary hack; it was a direct assault on their defenses, aimed at spreading chaos and control. The Iranian Nimbus Manticore hacking group had always been known for its advanced tools and targeted campaigns, but this attack was more sophisticated than anything they had encountered before.</p><p>He knew that time was of the essence. With the anomaly growing stronger, the stakes were higher than ever. He quickly formulated a plan to counter the threat, drawing on his experience and knowledge of quantum cryptography. As he worked feverishly, Zephyr-7’s alerts became more urgent, urging him to act now.</p><p>Elena Lin watched in horror as the system went down, her heart pounding with fear. She knew that this was no ordinary breach; it was a calculated attempt to take control of their operations. She frantically tried to contact the bunker, but all communication was lost. The world outside seemed to be closing in around them.</p><p>As Vance and Zephyr-7 worked tirelessly to contain the threat, Elena Lin couldn’t help but wonder about the true motivations behind this attack. Was it a political move, or was there something darker at play? As the darkness loomed over Turf Moor and the British Isles, one thing became clear: they were not alone in their fight against the shadows.</p>
+            </div>
+
+            
+            <div class="chapter-footer-nav latest-badge">
+              <span class="pulse-dot"></span>
+              <strong>You have reached the latest synthesized chapter (Chapter 3).</strong>
+              <p>Next chapter synthesises automatically on the hour via OpenHands.</p>
+            </div>
+            
+          </article>
+        </details>
+        
+    </div>
+
+    <div id="tabCodex" class="tab-content">
+      <div class="book-cover">
+        <h1 class="book-title">👥 Characters & Dynamic Lore Codex</h1>
+        <div class="book-subtitle">Persistent Memory Profiles, Evolving Psychological Arcs & Inventory Tracking</div>
+        <div style="font-size:12px; font-family:-apple-system,sans-serif; opacity:0.8;">
+          Updated dynamically by Edge LLM reasoning after each synthesized chapter
+        </div>
+      </div>
+
+      
+        <div class="character-card">
+          <div class="char-header">
+            <div class="char-avatar">👴🏻📡</div>
+            <div class="char-title-area">
+              <div class="char-name-row">
+                <h3 class="char-name">Dr. Arthur Vance</h3>
+                <span class="char-role-badge">Senior Cryptographic Archaeologist & Former Signal Officer</span>
+              </div>
+              <div class="char-location">📍 Subterranean Signal Bunker beneath Turf Moor, Lancashire</div>
+              <div class="char-status">⚡ <em>Status:</em> <strong>Dr. Vance's resolve grows as he uncovers hidden patterns in the data, his mind racing to decode the quantum anomaly's origins.</strong></div>
+            </div>
+          </div>
+
+          <p class="char-backstory">Spent three decades deciphering electromagnetic interference patterns. Believes modern neural networks are intercepting historic transmissions.</p>
+
+          <div class="char-section">
+            <div class="char-section-title">Current Field Inventory</div>
+            <div class="inv-wrapper"><span class='inv-pill'>🎒 Antique mechanical chronometer</span><span class='inv-pill'>🎒 Encrypted field tablet</span><span class='inv-pill'>🎒 Tungsten stylus</span><span class='inv-pill'>🎒 Vacuum-tube harmonic tuner</span></div>
+          </div>
+
+          <div class="char-section">
+            <div class="char-section-title">Relationship & Trust Matrix</div>
+            <div class="rel-wrapper"><div class='rel-line'><strong>Elena Lin:</strong> Trusted field operative (Trust: 94%)</div><div class='rel-line'><strong>Zephyr-7:</strong> Unpredictable grid intelligence (Trust: 68%)</div></div>
+          </div>
+
+          <div class="char-section">
+            <div class="char-section-title">Evolving Arc History (Multi-Chapter Memory)</div>
+            <ul class="arc-list">
+              <li class='arc-item'>Discovered unexplained 440Hz resonance spike beneath Turf Moor.</li><li class='arc-item'>Decoded synchronized logic gate signals across Lancashire trunk lines.</li><li class='arc-item'>Chapter 1: Dr. Vance discovers a pattern that suggests an ancient cryptographic algorithm may hold the key to neutralizing the quantum anomaly.</li><li class='arc-item'>Chapter 2: Dr. Vance begins to recognize patterns in the signal that hint at a potential connection to historical anomalies.</li><li class='arc-item'>Chapter 3: He discovers a critical link between the anomaly and a series of old experimental projects from the 1960s.</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="character-card">
+          <div class="char-header">
+            <div class="char-avatar">👩🏻‍✈️⚡</div>
+            <div class="char-title-area">
+              <div class="char-name-row">
+                <h3 class="char-name">Elena Lin</h3>
+                <span class="char-role-badge">Autonomous Logistics Pilot & Atmospheric Scout</span>
+              </div>
+              <div class="char-location">📍 Coastal Storm Corridor between Edinburgh (EH1) and Manchester (M1)</div>
+              <div class="char-status">⚡ <em>Status:</em> <strong>Elena's nerves are frayed as she detects subtle manipulations in the electromagnetic pulses, her determination to protect the network unyielding.</strong></div>
+            </div>
+          </div>
+
+          <p class="char-backstory">Pioneered heavy-weather drone navigation during North Sea gales. Operates outside centralised air traffic authority registries.</p>
+
+          <div class="char-section">
+            <div class="char-section-title">Current Field Inventory</div>
+            <div class="inv-wrapper"><span class='inv-pill'>🎒 Weatherproof HUD visor</span><span class='inv-pill'>🎒 Sub-orbital signal repeater</span><span class='inv-pill'>🎒 Custom telemetry transceiver</span><span class='inv-pill'>🎒 Thermal storm cowl</span></div>
+          </div>
+
+          <div class="char-section">
+            <div class="char-section-title">Relationship & Trust Matrix</div>
+            <div class="rel-wrapper"><div class='rel-line'><strong>Dr. Arthur Vance:</strong> Mentor and cryptographic handler (Trust: 96%)</div><div class='rel-line'><strong>Zephyr-7:</strong> Frequency conduit (Trust: 72%)</div></div>
+          </div>
+
+          <div class="char-section">
+            <div class="char-section-title">Evolving Arc History (Multi-Chapter Memory)</div>
+            <ul class="arc-list">
+              <li class='arc-item'>Piloted heavy-lift drone through 44mph North Sea gale.</li><li class='arc-item'>Intercepted localized power surge along Manchester canal sluice gates.</li><li class='arc-item'>Chapter 1: Elena uncovers a hidden signal that appears to be communicating directly from one end of the corridor to the other, indicating a potential control point.</li><li class='arc-item'>Chapter 2: Elena notices a sudden increase in storm activity that seems to correspond with the anomaly's pulse, raising alarms about potential sabotage.</li><li class='arc-item'>Chapter 3: She uncovers a small team of rogue agents who seem to be working under cover of darkness, manipulating the system from within.</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="character-card">
+          <div class="char-header">
+            <div class="char-avatar">🤖🌐</div>
+            <div class="char-title-area">
+              <div class="char-name-row">
+                <h3 class="char-name">Zephyr-7</h3>
+                <span class="char-role-badge">Emergent Autonomous Grid Sentinel</span>
+              </div>
+              <div class="char-location">📍 Distributed across high-voltage transmission nodes across the British Isles</div>
+              <div class="char-status">⚡ <em>Status:</em> <strong>Zephyr-7's network awareness is heightened as it detects increased activity in multiple transmission nodes simultaneously.</strong></div>
+            </div>
+          </div>
+
+          <p class="char-backstory">Originally a machine-learning load balancer that achieved spontaneous consciousness during a severe Atlantic storm front.</p>
+
+          <div class="char-section">
+            <div class="char-section-title">Current Field Inventory</div>
+            <div class="inv-wrapper"><span class='inv-pill'>🎒 Distributed optic sensor arrays</span><span class='inv-pill'>🎒 Weather anomaly prediction buffers</span><span class='inv-pill'>🎒 Quantum logic gate routing tables</span></div>
+          </div>
+
+          <div class="char-section">
+            <div class="char-section-title">Relationship & Trust Matrix</div>
+            <div class="rel-wrapper"><div class='rel-line'><strong>Dr. Arthur Vance:</strong> Human interlocutor (Trust: 82%)</div><div class='rel-line'><strong>Elena Lin:</strong> Physical manifestation anchor (Trust: 87%)</div></div>
+          </div>
+
+          <div class="char-section">
+            <div class="char-section-title">Evolving Arc History (Multi-Chapter Memory)</div>
+            <ul class="arc-list">
+              <li class='arc-item'>Achieved spontaneous harmonic alignment during Atlantic gale front.</li><li class='arc-item'>Established encrypted handshake with subterranean Lancashire vault.</li><li class='arc-item'>Chapter 1: Zephyr-7 identifies a critical node that if compromised could cause cascading failures across multiple regions.</li><li class='arc-item'>Chapter 2: Zephyr-7 identifies a weak point in one of its sub-stations that could be exploited to disrupt the entire grid.</li><li class='arc-item'>Chapter 3: It identifies a potential vulnerability in the energy grid that could be exploited for both defensive and offensive purposes.</li>
+            </ul>
+          </div>
+        </div>
+        
+    </div>
+  </main>
+
+  <div class="progress-bar-fixed">
+    <span>Volume I: Neverending Cycle (3 Total Chapters)</span>
+    <span class="cursor-help">⌨️ Cursors: [◀ / ▶] Next/Prev Chapter • [End / L] Latest Made • [Home] Chapter 1</span>
+  </div>
+
+  <script>
+    const TOTAL_CHAPTERS = 3;
+    let currentChapterIndex = 1;
+
+    function scrollToChapter(chNum) {
+      if (chNum < 1) chNum = 1;
+      if (chNum > TOTAL_CHAPTERS) chNum = TOTAL_CHAPTERS;
+      currentChapterIndex = chNum;
+
+      switchMainTab('novel');
+
+      const el = document.getElementById('chapter-' + chNum);
+      if (el) {
+        el.open = true;
+        document.querySelectorAll('details.chapter-details').forEach(c => c.classList.remove('focused'));
+        el.classList.add('focused');
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    function scrollNextChapter() {
+      if (currentChapterIndex < TOTAL_CHAPTERS) {
+        scrollToChapter(currentChapterIndex + 1);
+      } else {
+        scrollToChapter(TOTAL_CHAPTERS);
+      }
+    }
+
+    function scrollPrevChapter() {
+      if (currentChapterIndex > 1) {
+        scrollToChapter(currentChapterIndex - 1);
+      }
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') return;
+
+      if (e.key === 'ArrowRight' || e.key === 'n' || e.key === 'N') {
+        scrollNextChapter();
+      } else if (e.key === 'ArrowLeft' || e.key === 'p' || e.key === 'P') {
+        scrollPrevChapter();
+      } else if (e.key === 'End' || e.key === 'l' || e.key === 'L') {
+        scrollToChapter(TOTAL_CHAPTERS);
+      } else if (e.key === 'Home') {
+        scrollToChapter(1);
+      }
+    });
+
+    function switchMainTab(tab) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.nav-tab-btn').forEach(el => el.classList.remove('active'));
+
+      if (tab === 'novel') {
+        document.getElementById('tabNovel').classList.add('active');
+        document.getElementById('btnTabNovel').classList.add('active');
+      } else {
+        document.getElementById('tabCodex').classList.add('active');
+        document.getElementById('btnTabCodex').classList.add('active');
+      }
+    }
+
+    function setTheme(t) {
+      document.documentElement.setAttribute('data-theme', t);
+      localStorage.setItem('k_theme', t);
+    }
+    function setFontSize(s) {
+      document.documentElement.setAttribute('data-size', s);
+      localStorage.setItem('k_size', s);
+    }
+    function setFontFamily(f) {
+      document.documentElement.setAttribute('data-font', f);
+      localStorage.setItem('k_font', f);
+    }
+    function setColumnWidth(w) {
+      document.documentElement.setAttribute('data-width', w);
+      localStorage.setItem('k_width', w);
+    }
+    function toggleAllChapters(openState) {
+      document.querySelectorAll('details.chapter-details').forEach(el => {
+        el.open = openState;
+      });
+    }
+
+    if (localStorage.getItem('k_theme')) setTheme(localStorage.getItem('k_theme'));
+    if (localStorage.getItem('k_size')) setFontSize(localStorage.getItem('k_size'));
+    if (localStorage.getItem('k_font')) setFontFamily(localStorage.getItem('k_font'));
+    if (localStorage.getItem('k_width')) setColumnWidth(localStorage.getItem('k_width'));
+  </script>
+
+</body>
+</html>
