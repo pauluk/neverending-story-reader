@@ -1,0 +1,76 @@
+{
+  "bookTitle": "The Chronicles of the Golden Roll: Operation Bathroom Salvation",
+  "author": "Antigravity Autonomous Comedy Engine",
+  "genre": "High-Stakes British Domestic Farce",
+  "createdAtUk": "02/09/26 20:26",
+  "totalChapters": 2,
+  "characters": [
+    {
+      "id": "char_nigel",
+      "name": "Nigel Pemberton",
+      "role": "Desperate Protagonist & Stranded IT Consultant",
+      "avatar": "\ud83d\ude30\ud83e\uddfb",
+      "status": "Trapped in the upstairs en-suite facing the dreaded cardboard tube of doom",
+      "personality": "Mild-mannered, overthinks everything, fiercely determined to preserve dignity.",
+      "location": "Upstairs En-suite Bathroom, 42 Acacia Crescent, Lancashire",
+      "backstory": "Came in for what was supposed to be a brief 2-minute visit. Made the fatal mistake of not checking roll reserves beforehand.",
+      "inventory": [
+        "Smartphone with 4% battery",
+        "Empty brown cardboard cylinder",
+        "Single dry cotton bud",
+        "Pair of socks of questionable utility"
+      ],
+      "relationships": {
+        "Brenda Pemberton": "Spouse downstairs (Trust: 88%, Current Reachability: 0%)",
+        "Barnaby": "Suspicious Golden Retriever"
+      },
+      "arcHistory": [
+        "Sat down in total confidence.",
+        "Reached sideways blindly only to grasp hollow cardboard."
+      ],
+      "lastObservedUk": "02/09/26 20:26"
+    },
+    {
+      "id": "char_brenda",
+      "name": "Brenda Pemberton",
+      "role": "Unwitting Gatekeeper of the Airing Cupboard",
+      "avatar": "\ud83d\udc69\ud83c\udffb\ud83c\udfa7",
+      "status": "Downstairs in the living room binge-watching crime dramas with noise-cancelling AirPods",
+      "personality": "Practical, organised, utterly oblivious to upstairs crisis sirens.",
+      "location": "Living Room Sofa",
+      "backstory": "Bought a 24-pack of luxury quilted aloe vera rolls yesterday, but where on earth did she store them?",
+      "inventory": [
+        "AirPods Max in Noise Cancellation Mode",
+        "Mug of Earl Grey",
+        "TV Remote"
+      ],
+      "relationships": {
+        "Nigel Pemberton": "Husband (Assumed to be doing DIY)"
+      },
+      "arcHistory": [
+        "Put the shopping away in a place Nigel would never think to look."
+      ],
+      "lastObservedUk": "02/09/26 20:26"
+    }
+  ],
+  "chapters": [
+    {
+      "chapterNumber": 1,
+      "title": "Chapter 1: The Quest for the 4-Ply Grail",
+      "timestampUk": "02/09/26 20:26",
+      "tone": "Triumphant Action Adventure (Tactical stretching, towel reconnaissance, miraculous discovery)",
+      "modelUsed": "Built-in Comedy Fallback Engine",
+      "urgencyLevel": "CRITICAL (Code Brown)",
+      "body": "Nigel stared at the hollow cardboard cylinder with the profound horror usually reserved for Apollo mission commanders realizing an oxygen tank has failed. His hand hovered in mid-air. He squeezed the brown tube. Empty. Desolate. Bereft of even a single ply of ply-wood-grade tissue.\n\n'Brenda?' he whispered, testing the acoustics of the en-suite tiles. Nothing. Downstairs, the muffled, thumping theme song of *Midsomer Murders* hummed through the floorboards. Brenda had her noise-cancelling headphones clamped on. She was in the zone. He was in the danger zone.\n\nNigel assessed his assets: a phone displaying 3% battery and searching for Wi-Fi; a single cotton bud; and a decorative shell soap dispenser that offered neither comfort nor utility. Then his gaze drifted upward. Above the radiator, perched atop the high wicker cabinet behind the wicker bath salts Brenda had received in 2018... a gleam. A pristine, cylindrical silhouette. Could it be? The mythical 4-ply Aloe Vera Quilted reserve roll?! Nigel stretched his spine with tactical precision..."
+    },
+    {
+      "chapterNumber": 2,
+      "title": "Chapter 2: The Tactical Cantilever & The Golden Retriever",
+      "timestampUk": "02/09/26 20:32",
+      "tone": "High-Stakes Domestic Espionage (Tactical stretching, canine intrusion)",
+      "modelUsed": "phi4:latest + Comedy Co-Pilot",
+      "urgencyLevel": "MAXIMUM (Door Open)",
+      "body": "The laws of Newtonian mechanics were not designed for an en-suite bathroom in Lancashire, yet Nigel Pemberton was about to push them to their biological breaking point.\n\nTo reach the summit of the high wicker cabinet, Nigel had to execute what aerospace engineers call an 'asymmetric cantilever manoeuver.' Planting his right heel firmly on the cold ceramic rim, he extended his left leg forward like a seasoned Olympic gymnast, leaning his torso across the void at an improbable forty-two-degree angle.\n\n'Steady... steady on, Pemberton,' he muttered under his breath, beads of cold sweat trickling down his nose. His right arm stretched out, fingers splayed. Three centimetres. Two centimetres. His index fingernail grazed the crinkling plastic packaging of the 4-ply luxury roll. Victory was within reach. Dignity was almost restored.\n\nThen, the brass door handle slowly clicked.\n\nThe en-suite door creaked open precisely three inches. Into the gap poked a large, wet, black nose, followed by the cheerful, golden-furred head of Barnaby, the family\u2019s thirty-five-kilogram Golden Retriever. In his jaws, Barnaby clutched Nigel\u2019s favourite sheepskin slipper.\n\nDog and man locked eyes in a silence so profound you could hear the radiator gurgle. Barnaby looked at Nigel. Barnaby looked at Nigel's perilous horizontal stretch. Then, with slow, deliberate curiosity, Barnaby nudged the bathroom door wide open with his flank, letting in a brisk draft from the upstairs hallway.\n\n'Barnaby, no,' Nigel hissed in a desperate, breathy whisper. 'Barnaby, sit. Stay. For the love of God, do not wag your tail.'"
+    }
+  ]
+}
